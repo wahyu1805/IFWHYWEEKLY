@@ -1,88 +1,61 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Mahasiswa | INFORMATIKA 2026</title>
+    <style>
+        table, td, th { border: 1px solid black; border-collapse: collapse; }
+        td, th { padding: 15px; }
+    </style>
 </head>
-
-<style>
-    table,
-    td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-
-    td {
-        padding: 15px;
-    }
-</style>
-
 <body>
-
     <h1 align="center">DATA MAHASISWA</h1>
+<a href="tambahdata.html">
+</xai:function_call)
 
+
+
+<xai:function_call name="edit_file">
+<parameter name="path">
+        <button style="margin-left: 50px; padding: 10px; font-size: 16px;">Tambah Data</button>
+    </a>
     <!-- Menu Navigasi -->
     <table align="center" border="1" cellpadding="10">
         <tr>
             <td><a href="index.html">Home</a></td>
             <td><a href="profil.html">Profile</a></td>
             <td><a href="contact.html">Kontak</a></td>
-            <td><a href="mahasiswa.html">Data Mahasiswa</a></td>
+            <td><a href="identitasmahasiswa_new.html">identitas Mahasiswa</a></td>
+</xai:function_call
+
+
+
+<xai:function_call name="read_file">
+<parameter name="path">
         </tr>
     </table>
 
     <br>
 
-    <table border="1" align="center" cellpadding="10">
-        <tr>
-            <th>No</th>
-            <th>Foto</th>
-            <th>Nama</th>
-            <th>NIM</th>
-            <th>Jurusan</th>
-        </tr>
-
-        <tr>
-            <td>1</td>
-            <td><img src="https://i.pinimg.com/originals/f0/a2/8a/f0a28aaa06eb888a7172d2016f812b34.jpg" width="80"></td>
-            <td>Wahyu</td>
-            <td>13182420056</td>
-            <td>Informatika</td>
-        </tr>
-
-        <tr>
-            <td>2</td>
-            <td><img src="https://i.pinimg.com/736x/f4/66/e6/f466e652615166b7c8072d41ec003f89.jpg" width="80"></td>
-            <td>nailong</td>
-            <td>1316242000</td>
-            <td>Informatika</td>
-        </tr>
-
-        <tr>
-            <td>3</td>
-            <td><img src="https://i.pinimg.com/originals/b1/ef/fa/b1effac43bb053a95c307b52ff0cb196.jpg?nii=t" width="80"></td>
-            <td>Syaif</td>
-            <td>2026003</td>
-            <td>Sistem Informasi</td>
-        </tr>
-
-        <tr>
-            <td>4</td>
-            <td><img src="https://tse1.mm.bing.net/th/id/OIP.8GfX4CvPEWL4rHKQrazwiwHaHa?pid=Api&P=0&h=180" width="80"></td>
-            <td>ombg</td>
-            <td>1318244000</td>
-            <td>Teknik Komputer</td>
-        </tr>
-
+    <table border="1" align="center" cellpadding="10" id="studentTable">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Foto</th>
+                <th>Nama</th>
+                <th>NIM</th>
+                <th>Jurusan</th>
+            </tr>
+        </thead>
+        <tbody id="studentBody">
+            
+        </tbody>
     </table>
 
     <br>
 
-<h3 align="center">LATIHAN</h3>
-
+    <h3 align="center">LATIHAN</h3>
     <table border="1" align="center">
         <tr>
             <td>1,1</td>
@@ -107,6 +80,43 @@
         </tr>
     </table>
 
-</body>
+    <script>
+        // Hardcoded initial data (will merge with localStorage)
+        const initialStudents = [
+            { foto: 'https://i.pinimg.com/originals/f0/a2/8a/f0a28aaa06eb888a7172d2016f812b34.jpg', nama: 'Wahyu', nim: '13182420056', jurusan: 'Informatika' },
+            { foto: 'https://i.pinimg.com/736x/f4/66/e6/f466e652615166b7c8072d41ec003f89.jpg', nama: 'nailong', nim: '1316242000', jurusan: 'Informatika' },
+            { foto: 'https://i.pinimg.com/originals/b1/ef/fa/b1effac43bb053a95c307b52ff0cb196.jpg?nii=t', nama: 'Syaif', nim: '2026003', jurusan: 'Sistem Informasi' },
+            { foto: 'https://tse1.mm.bing.net/th/id/OIP.8GfX4CvPEWL4rHKQrazwiwHaHa?pid=Api&P=0&h=180', nama: 'ombg', nim: '1318244000', jurusan: 'Teknik Komputer' }
+        ];
 
+        function loadStudents() {
+            const tbody = document.getElementById('studentBody');
+            tbody.innerHTML = ''; // Clear
+
+            let students = JSON.parse(localStorage.getItem('mahasiswaData')) || [];
+            // Merge initial if localStorage empty
+            if (students.length === 0) {
+                localStorage.setItem('mahasiswaData', JSON.stringify(initialStudents));
+                students = initialStudents;
+            }
+
+            students.forEach((student, index) => {
+                const row = tbody.insertRow();
+                row.insertCell(0).textContent = index + 1;
+                const fotoCell = row.insertCell(1);
+                fotoCell.innerHTML = `<img src="${student.foto}" width="80">`;
+                row.insertCell(2).textContent = student.nama;
+                row.insertCell(3).textContent = student.nim;
+                row.insertCell(4).textContent = student.jurusan;
+            });
+        }
+
+        // Load on page ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadStudents);
+        } else {
+            loadStudents();
+        }
+    </script>
+</body>
 </html>
