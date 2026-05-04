@@ -1,39 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Data | INFORMATIKA 2026</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
-        label { display: block; margin: 10px 0 5px; font-weight: bold; }
-        input { width: 100%; padding: 8px; margin-bottom: 10px; box-sizing: border-box; }
-        input[type="submit"] { background: #4CAF50; color: white; padding: 12px; border: none; cursor: pointer; font-size: 16px; }
-        input[type="submit"]:hover { background: #45a049; }
-        #fotoPreview { max-width: 200px; max-height: 200px; margin-top: 10px; }
-        a { display: inline-block; margin-top: 20px; color: #0066cc; text-decoration: none; }
-    </style>
+    <title>Tambah Data Mahasiswa | INFORMATIKA</title>
+    <link rel="stylesheet" href="tambahdata.css">
 </head>
 <body>
-    <h2>TAMBAH DATA MAHASISWA</h2>
-    <form id="studentForm">
-        <label for="nama">Nama:</label>
-        <input type="text" id="nama" name="nama" required>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="profil.html">Profile</a>
+            <a href="contact.html">Contact</a>
+            <a href="identitasmahasiswa.html">Data Mahasiswa</a>
+            <a href="tambahdata.html">Tambah Data</a>
+        </nav>
+    </header>
 
-        <label for="nim">NIM:</label>
-        <input type="text" id="nim" name="nim" required>
+    <main>
+        <h2>TAMBAH DATA MAHASISWA</h2>
+        <form id="studentForm">
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama" required>
 
-        <label for="jurusan">Jurusan:</label>
-        <input type="text" id="jurusan" name="jurusan" required>
+            <label for="nim">NIM:</label>
+            <input type="text" id="nim" name="nim" required>
 
-        <label for="foto">Foto:</label>
-        <input type="file" id="foto" name="foto" accept="image/*" required>
-        <img id="fotoPreview" style="display:none;">
+            <label for="jurusan">Jurusan:</label>
+            <input type="text" id="jurusan" name="jurusan" required>
 
-        <input type="submit" value="Tambah Data">
-    </form>
+            <label for="foto">Foto:</label>
+            <input type="file" id="foto" name="foto" accept="image/*" required>
+            <img id="fotoPreview">
 
-    <a href="identitasmahasiswa.html">BACK</a>
+            <input type="submit" value="Tambah Data">
+        </form>
+
+        <a href="identitasmahasiswa.html" class="back-link">Kembali ke Data Mahasiswa</a>
+    </main>
 
     <script>
         const form = document.getElementById('studentForm');
