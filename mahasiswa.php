@@ -2,6 +2,10 @@
 
 require 'fungsi.php';
 
+// Controller: tambah / edit / hapus via Python backend
+$act = $_GET['act'] ?? ($_POST['act'] ?? 'list');
+
+// list
 $qmahasiswa = "SELECT * FROM mahasiswa";
 $mahasiswas = tampildata($qmahasiswa);
 ?>  
@@ -62,8 +66,8 @@ $mahasiswas = tampildata($qmahasiswa);
         <td><?php echo $row['no_hp']; ?></td>
         <td><img src="assets/images/<?php echo $row['foto']; ?>" alt="foto" width="60px"></td>
         <td>
-          <a href="editdata.php?id=<?php echo $row['id']; ?>">Edit</a> |
-          <a href="hapusdata.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+<a href="mahasiswa.php?act=edit&id=<?php echo $row['id']; ?>">Edit</a> |
+          <a href="mahasiswa.php?act=delete&id=<?php echo $row['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
         </td>
       </tr>
       <?php } ?>

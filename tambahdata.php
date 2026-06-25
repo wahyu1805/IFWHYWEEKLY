@@ -16,7 +16,7 @@
       </tr>
     </table>
     <h2 align="center">Tambah Data</h2>
-    <form action="mahasiswa.php" method="post">
+    <form action="mahasiswa.php" method="post" enctype="multipart/form-data">
       <table class="table">
         <tr>
           <td label="Nama">Nama</label></td>
